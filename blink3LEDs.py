@@ -5,17 +5,19 @@ import RPi.GPIO as GPIO
 
 GPIO.setmode(GPIO.BCM)
 
-## Hardware
+## Hardware - the LED pins
 led1 = LED(14)
 led2 = LED(23)
 led3 = LED(25)
 
-## GUI
+## GUI - creating a window and setting the font
 win = Tk()
 win.title("Three LEDs")
 buttonFont = tkinter.font.Font(family = 'Helvetica', size = 12, weight = "normal")
 
-## Program Functions
+## Program Functionality
+## Each method below controls one LED, ensuring the button message changes appropriately
+## and the other LEDs turn off
 def led1Toggle():
         if led1.is_lit:
                 led1.off()
@@ -53,10 +55,11 @@ def led3Toggle():
                 led3Button["text"] = "Turn off YELLOW"
 
 ## Widgets
-
+## The buttons to control the LEDs
 led1Button = Button(win, text = 'Turn on RED', font = buttonFont, command = led1Toggle, bg = 'bisque2', height = 1, width = 24)
 led2Button = Button(win, text = 'Turn on BLUE', font = buttonFont, command = led2Toggle, bg = 'bisque2', height = 1, width = 24)
 led3Button = Button(win, text = 'Turn on YELLOW', font = buttonFont, command = led3Toggle, bg = 'bisque2', height = 1, width = 24)
+## Placing the buttons in a row
 led1Button.grid(row=0,column=1)
 led2Button.grid(row=0,column=2)
 led3Button.grid(row=0,column=3)
